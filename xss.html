@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Межсайтовый скриптинг (XSS)</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Навигационная панель -->
+    <nav class="navbar navbar-expand-lg navbar-darker sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Web Security</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="common-threats.html">Угрозы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="xss.html">XSS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sql-injection.html">SQL-инъекции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https-tls.html">HTTPS/TLS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="authentication.html">Аутентификация</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контейнер -->
+    <div class="container mt-4">
+        <div class="row">
+
+            <!-- Левый сайдбар -->
+            <div class="col-lg-3 col-md-4 mb-4">
+                <aside class="sidebar p-3 bg-body-secondary rounded">
+                    <h5>Навигация</h5>
+                    <hr>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#overview">Обзор XSS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#types">Основные типы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#example">Пример атаки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#protection">Защита</a>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+
+            <!-- Область основного контента -->
+            <div class="col-lg-9 col-md-8">
+                <main>
+                    <!-- Раздел 1 -->
+                    <section id="overview">
+                        <h1>Межсайтовый скриптинг (XSS)</h1>
+                        <p>
+                            <strong>XSS (Cross-Site Scripting)</strong> – это уязвимость, позволяющая
+                            злоумышленнику вставить и выполнить произвольный скриптовый код (обычно JavaScript) на
+                            стороне клиента.
+                            Атака происходит в браузере жертвы и может приводить к краже сессионных куки,
+                            перенаправлениям
+                            на фишинговые сайты или подмене отображаемого контента.
+                        </p>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <!-- Раздел 2 -->
+                    <section id="types">
+                        <h2>Типы XSS</h2>
+                        <ul>
+                            <li>
+                                <strong>Reflected (Отражённый) XSS:</strong> вредоносный код передаётся
+                                в параметрах запроса (URL) и «отражается» сайтом обратно в ответ,
+                                где и выполняется в браузере жертвы;
+                            </li>
+                            <li>
+                                <strong>Stored (Сохранённый) XSS:</strong> скрипт сохраняется на самом сервере
+                                (например, в базе данных) и при загрузке страницы скомпрометированный контент
+                                автоматически исполняется в браузере каждого посетителя;
+                            </li>
+                            <li>
+                                <strong>DOM-based XSS:</strong> атака происходит исключительно на стороне клиента.
+                                Злоумышленник манипулирует DOM-структурой (через URL, хеш или другие методы), в
+                                результате чего
+                                браузер сам выполняет вставленный код.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <!-- Раздел 3 -->
+                    <section id="example">
+                        <h2>Пример Reflected XSS</h2>
+                        <p>
+                            Допустим, на сайте есть поиск, который выводит переданный параметр в виде «Вы искали: ...».
+                            Если разработчик напрямую вставляет пользовательский ввод в HTML без экранирования,
+                            злоумышленник может отправить ссылку с кодом, например:
+                        </p>
+
+                        <div class="card bg-dark text-light mb-3">
+                            <div class="card-body">
+                                <code>https://example.com/search?q=&lt;script&gt;alert('XSS!')&lt;/script&gt;</code>
+                            </div>
+                        </div>
+
+                        <p>
+                            Если страница вернёт «Вы искали: <code>&lt;script&gt;alert('XSS!')&lt;/script&gt;</code>»,
+                            то при открытии ссылки в браузере жертвы исполнится JavaScript, выводящий всплывающее окно.
+                        </p>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <!-- Раздел 4 -->
+                    <section id="protection">
+                        <h2>Методы защиты</h2>
+                        <ul>
+                            <li>
+                                <strong>Валидация и экранирование входных данных:</strong> при выводе в HTML,
+                                JavaScript или URL необходимо преобразовывать спецсимволы
+                                (<code>&lt;, &gt;, &amp;</code> и пр.);
+                            </li>
+                            <li>
+                                <strong>Использование шаблонизаторов и фреймворков:</strong> многие современные
+                                фреймворки автоматически экранируют динамический контент;
+                            </li>
+                            <li>
+                                <strong>Content Security Policy (CSP):</strong> позволяет ограничить источники
+                                скриптов, стилей и других ресурсов, препятствуя выполнению вредоносного кода;
+                            </li>
+                            <li>
+                                <strong>Запрет inline-скриптов:</strong> по возможности, все скрипты следует
+                                выносить во внешние файлы и подключать их безопасным способом.
+                            </li>
+                        </ul>
+                        <p>
+                            Комплексный подход к защите от XSS – один из важнейших факторов
+                            безопасного веб-приложения. Необходимо регулярно проводить анализ кода
+                            (Code Review), применять автоматизированные тесты безопасности
+                            и обновлять уязвимые компоненты.
+                        </p>
+                    </section>
+                </main>
+            </div> <!-- /col-lg-9 -->
+
+        </div> <!-- /row -->
+    </div> <!-- /container -->
+
+    <!-- Подвал (Footer) -->
+    <footer class="footer-darker text-white text-center p-5 mt-5">
+        <div class="container">
+            <p class="mb-0">© Мирошник Даниил</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle (включает Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-darker sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Web Security</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="common-threats.html">Угрозы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="xss.html">XSS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="sql-injection.html">SQL-инъекции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https-tls.html">HTTPS/TLS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="authentication.html">Аутентификация</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container mt-4">
+        <div class="row">
+
+            <div class="col-lg-3 col-md-4 mb-4">
+                <aside class="sidebar p-3 bg-body-secondary rounded">
+                    <h5>Навигация</h5>
+                    <hr>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#intro">Что такое SQL-инъекция</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#types">Виды SQL-инъекций</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#example">Пример атаки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#protection">Методы защиты</a>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+
+            <div class="col-lg-9 col-md-8">
+                <main>
+                    <section id="intro">
+                        <h1>SQL-инъекция</h1>
+                        <img src="sql-injection.png" alt=""
+                        style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+                        <p>
+                            <strong>SQL-инъекция</strong> — это тип уязвимости, при котором злоумышленник внедряет
+                            вредоносные SQL-команды в запросы приложения. Это может привести к несанкционированному
+                            доступу к базе данных, утечке или уничтожению информации.
+                        </p>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <section id="types">
+                        <h2>Виды SQL-инъекций</h2>
+                        <ul>
+                            <li><strong>Классическая инъекция</strong> — простой ввод вредоносного SQL-кода в текстовые
+                                поля или URL;</li>
+                            <li><strong>Слепая (Blind SQL Injection)</strong> — не выводит ошибки напрямую, атакующий
+                                получает информацию косвенно (по времени отклика или ответам);</li>
+                            <li><strong>Union-based инъекция</strong> — использует оператор UNION для объединения
+                                результатов нескольких запросов;</li>
+                            <li><strong>Error-based инъекция</strong> — использует сообщения об ошибках для извлечения
+                                данных.</li>
+                        </ul>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <section id="example">
+                        <h2>Пример простой SQL-инъекции</h2>
+                        <p>Предположим, существует уязвимая форма входа:</p>
+
+                        <div class="card bg-dark text-light mb-3">
+                            <div class="card-body">
+                                <code>SELECT * FROM users WHERE username = '$username' AND password = '$password';</code>
+                            </div>
+                        </div>
+
+                        <p>Злоумышленник вводит в поле логина:</p>
+
+                        <div class="card bg-dark text-light mb-3">
+                            <div class="card-body">
+                                <code>admin' --</code>
+                            </div>
+                        </div>
+
+                        <p>SQL-запрос превращается в:</p>
+
+                        <div class="card bg-dark text-light mb-3">
+                            <div class="card-body">
+                                <code>SELECT * FROM users WHERE username = 'admin' --' AND password = '';</code>
+                            </div>
+                        </div>
+
+                        <p>Пароль игнорируется, и злоумышленник получает доступ как администратор.</p>
+                    </section>
+
+
+                    <hr class="my-4">
+
+                    <section id="protection">
+                        <h2>Как защититься от SQL-инъекций?</h2>
+                        <ul>
+                            <li>Использовать подготовленные запросы (Prepared Statements);</li>
+                            <li>Валидировать и экранировать входные данные пользователя;</li>
+                            <li>Ограничить права доступа к базе данных для веб-приложения;</li>
+                            <li>Регулярно обновлять ПО и проводить аудиты безопасности.</li>
+                        </ul>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-darker text-white text-center p-5 mt-5">
+        <div class="container">
+            <p class="mb-0">© Мирошник Даниил</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

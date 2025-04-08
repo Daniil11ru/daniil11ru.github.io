@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTPS и TLS</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-darker sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Web Security</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="common-threats.html">Угрозы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="xss.html">XSS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sql-injection.html">SQL-инъекции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https-tls.html">HTTPS/TLS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="authentication.html">Аутентификация</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+
+            <div class="col-lg-3 col-md-4 mb-4">
+                <aside class="sidebar p-3 bg-body-secondary rounded">
+                    <h5>Навигация</h5>
+                    <hr>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#intro">Что такое HTTPS и TLS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#why">Почему это важно</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#how">Как это работает</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#tips">Рекомендации</a>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+
+            <div class="col-lg-9 col-md-8">
+                <main>
+                    <section id="intro">
+                        <h1>HTTPS и TLS</h1>
+                        <p>
+                            <strong>HTTPS (HyperText Transfer Protocol Secure)</strong> — это защищённая версия HTTP, в
+                            которой данные передаются через зашифрованное соединение с использованием протокола TLS
+                            (Transport Layer Security).
+                        </p>
+                        <p>
+                            TLS обеспечивает конфиденциальность, целостность и подлинность передаваемых данных между
+                            клиентом (обычно браузером) и сервером.
+                        </p>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <section id="why">
+                        <h2>Почему важно использовать HTTPS</h2>
+                        <ul>
+                            <li>
+                                <strong>Защита данных пользователей:</strong>
+                                предотвращает перехват логинов, паролей и другой
+                                чувствительной информации;
+                            </li>
+                            <li>
+                                <strong>Доверие и репутация:</strong>
+                                современные браузеры помечают сайты без HTTPS как "небезопасные";
+                            </li>
+                            <li>
+                                <strong>SEO-преимущества:</strong>
+                                поисковые системы ранжируют HTTPS-сайты выше;
+                            </li>
+                            <li><strong>Необходимость для работы с современными веб API:</strong> многие функции
+                                (например, геолокация) требуют HTTPS.</li>
+                        </ul>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <section id="how">
+                        <h2>Как работает TLS</h2>
+                        <p>
+                            При подключении к сайту через HTTPS:
+                        </p>
+                        <ol>
+                            <li>Клиент отправляет запрос на установление защищённого соединения;</li>
+                            <li>Сервер отвечает цифровым сертификатом, подтверждающим его подлинность;</li>
+                            <li>Происходит TLS-рукопожатие: клиент и сервер договариваются
+                                об алгоритмах шифрования и создают общий секрет;</li>
+                            <li>После этого начинается защищённый обмен данными.</li>
+                        </ol>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <section id="tips">
+                        <h2>Рекомендации по использованию HTTPS/TLS</h2>
+                        <ul>
+                            <li>Используйте только актуальные версии TLS (не ниже 1.2,
+                                предпочтительно 1.3);</li>
+                            <li>Настройте автоматическое перенаправление с HTTP на HTTPS;</li>
+                            <li>Используйте сертификаты от доверенных центров сертификации
+                                (например, Let's Encrypt);</li>
+                            <li>Регулярно обновляйте конфигурации и отслеживайте отчёты о безопасности (например, через
+                                SSL Labs).</li>
+                        </ul>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-darker text-white text-center p-5 mt-5">
+        <div class="container">
+            <p class="mb-0">© Мирошник Даниил</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

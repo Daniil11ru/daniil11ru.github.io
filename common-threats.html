@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Угрозы</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Навигационное меню -->
+    <nav class="navbar navbar-expand-lg navbar-darker sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                Web Security
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="common-threats.html">Угрозы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="xss.html">XSS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sql-injection.html">SQL-инъекции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https-tls.html">HTTPS/TLS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="authentication.html">Аутентификация</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Левый Сайдбар -->
+            <div class="col-lg-3 col-md-4 mb-4">
+                <aside class="sidebar p-3 bg-body-secondary rounded">
+                    <h5 class="text-light">Навигация</h5>
+                    <hr>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#intro">Введение</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#why">Почему это важно</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#examples">Примеры угроз</a>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+
+            <!-- Область основного контента -->
+            <div class="col-lg-9 col-md-8">
+                <main>
+                    <!-- ЧАСТЬ 1: Общий обзор угроз -->
+                    <section id="intro">
+                        <h1>Угрозы в веб-приложениях</h1>
+                        <p>
+                            В современном веб-пространстве угроза безопасности данных и ресурсов стоит особенно остро.
+                            Недостаточная защита может привести к финансовым потерям, компрометации систем и утечке
+                            конфиденциальной информации. Для понимания масштабов проблемы важно рассмотреть, какие типы
+                            атак наиболее часто встречаются.
+                        </p>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <section id="why">
+                        <h2>Почему это важно</h2>
+                        <ul>
+                            <li>
+                                <strong>Доступность и репутация: </strong>
+                                атака, выведшая веб-сервис из строя,
+                                способна подорвать доверие пользователей;
+                            </li>
+                            <li>
+                                <strong>Финансовые потери: </strong>
+                                кража платежной информации или блокировка ресурсов
+                                для выкупа (ransomware) может привести к убыткам;
+                            </li>
+                            <li>
+                                <strong>Юридическая ответственность: </strong>
+                                несоблюдение законов (GDPR, локальных
+                                норм по защите данных) влечет за собой штрафы.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <section id="examples">
+                        <h2>Основные направления угроз</h2>
+                        <p>
+                            Ниже – лишь верхушка айсберга существующих уязвимостей. Каждая из них имеет свои
+                            особенности,
+                            но цель у злоумышленника одна – получить доступ к данным или нарушить работу сервиса.
+                        </p>
+                        <!-- Пример таблицы -->
+                        <section id="table-example">
+                            <div class="table-responsive">
+                                <table class="table table-dark table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Название</th>
+                                            <th>Описание</th>
+                                            <th>Уровень риска</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>SQL-инъекции</td>
+                                            <td>Внедрение вредоносных SQL-запросов через формы и параметры URL</td>
+                                            <td>Высокий</td>
+                                        </tr>
+                                        <tr>
+                                            <td>XSS (межсайтовый скриптинг)</td>
+                                            <td>Вставка скриптов на страницы для атаки на пользователей</td>
+                                            <td>Средне-высокий</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CSRF (подделка межсайтовых запросов)</td>
+                                            <td>Выполнение действий от имени пользователя без его ведома</td>
+                                            <td>Средний</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Утечка конфиденциальной информации</td>
+                                            <td>Разглашение логинов, паролей, токенов и других чувствительных данных
+                                            </td>
+                                            <td>Критический</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Слабая аутентификация</td>
+                                            <td>Использование небезопасных паролей и отсутствие двухфакторной защиты
+                                            </td>
+                                            <td>Высокий</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                    </section>
+                </main>
+
+                <!-- Пагинация (нижний блок) -->
+                <nav aria-label="Page navigation example" class="mt-5">
+                    <ul class="pagination justify-content-center pagination-dark">
+                        <!-- Первая страница: Previous отключена -->
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Предыдущая</a>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="common-threats.html">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="common-threats-2.html">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="common-threats-3.html">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="common-threats-2.html">Следующая</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div> <!-- /col-lg-9 -->
+        </div> <!-- /row -->
+    </div> <!-- /container -->
+
+    <!-- Подвал (Footer) -->
+    <footer class="footer-darker text-white text-center p-5 mt-5">
+        <div class="container">
+            <p class="mb-0">© Мирошник Даниил</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle (включает Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

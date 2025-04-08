@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аутентификация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-darker sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Web Security</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="common-threats.html">Угрозы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="xss.html">XSS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sql-injection.html">SQL-инъекции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https-tls.html">HTTPS/TLS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="authentication.html">Аутентификация</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 mb-4">
+                <aside class="sidebar p-3 bg-body-secondary rounded">
+                    <h5>Навигация</h5>
+                    <hr>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#intro">Что такое аутентификация</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#methods">Методы аутентификации</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#best">Лучшие практики</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#risks">Ошибки и риски</a>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+
+            <div class="col-lg-9 col-md-8">
+                <main>
+                    <section id="intro">
+                        <h1>Аутентификация</h1>
+                        <p>
+                            Аутентификация — это процесс проверки личности пользователя, с целью определить, кто именно
+                            пытается получить доступ к системе. Она является первой линией обороны в любой системе
+                            безопасности.
+                        </p>
+                        <p>
+                            После успешной аутентификации может следовать авторизация — определение прав доступа
+                            пользователя.
+                        </p>
+
+                        <div class="mermaid">
+                            flowchart LR
+                            Identification[Идентификация] --> Authentication[Аутентификация]
+                            Authentication --> Authorization[Авторизация]
+                        </div>
+
+                    </section>
+
+                    <hr class="my-4">
+
+                    <section id="methods">
+                        <h2>Основные методы аутентификации</h2>
+                        <ul>
+                            <li><strong>По паролю:</strong>
+                                самый распространённый метод, но подвержен взлому при слабых паролях;</li>
+                            <li><strong>По токену:</strong>
+                                одноразовые коды, SMS, приложения (например, Google Authenticator);</li>
+                            <li><strong>Биометрическая аутентификация:</strong>
+                                отпечатки пальцев, распознавание лица, радужной оболочки и т.д;</li>
+                            <li><strong>Сертификаты:</strong> цифровые сертификаты и ключи;</li>
+                            <li><strong>OAuth/OpenID:</strong> делегирование авторизации другим сервисам (Google,
+                                Facebook).</li>
+                        </ul>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <section id="best">
+                        <h2>Рекомендации по безопасной аутентификации</h2>
+                        <ul>
+                            <li>Используйте двухфакторную аутентификацию (2FA) везде, где возможно;</li>
+                            <li>Храните пароли в хэшированном виде (bcrypt, Argon2 и т.д.);</li>
+                            <li>Ограничивайте количество попыток входа и применяйте капчу;</li>
+                            <li>Применяйте безопасные сессии и регулярно их обновляйте;</li>
+                            <li>Следите за сроками действия токенов и устанавливайте политики смены пароля.</li>
+                        </ul>
+                    </section>
+
+                    <hr class="my-4">
+
+                    <section id="risks">
+                        <h2>Типичные ошибки и риски</h2>
+                        <ul>
+                            <li>Использование простых и предсказуемых паролей;</li>
+                            <li>Хранение паролей в открытом виде;</li>
+                            <li>Отсутствие 2FA на критически важных аккаунтах;</li>
+                            <li>Передача данных авторизации по незашифрованному соединению;</li>
+                            <li>Недостаточная защита от атак перебора (brute force).</li>
+                        </ul>
+                        <p>
+                            Надёжная аутентификация — это основа любой системы информационной безопасности. Её
+                            реализация должна учитывать как технические, так и человеческие факторы.
+                        </p>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-darker text-white text-center p-5 mt-5">
+        <div class="container">
+            <p class="mb-0">© Мирошник Даниил</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: "dark"
+        });
+    </script>
+</body>
+
+</html>
