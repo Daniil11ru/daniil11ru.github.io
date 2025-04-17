@@ -1,38 +1,84 @@
-.pagination-dark .page-link {
-    background-color: #343a40;
-    color: #fff;
-    border-color: #454d55;
+.sidebar {
+    background: var(--bs-gray-100);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
 }
 
-.pagination-dark .page-link:hover,
-.pagination-dark .page-link:focus {
-    background-color: #454d55;
-    color: #fff;
-    border-color: #565e64;
+.footer {
+    background: var(--bs-gray-100);
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, .08);
 }
 
-.pagination-dark .page-item.active .page-link {
-    background-color: #007bff;
-    border-color: #007bff;
+.navbar {
+    background: var(--bs-gray-100);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
 }
 
-.footer-darker {
+.sidebar a {
+    color: var(--bs-dark-text-emphasis);
+}
+
+[data-bs-theme="dark"] .sidebar {
+    background: var(--bs-secondary-bg);
+    box-shadow: none;
+}
+
+[data-bs-theme="dark"] .footer {
+    background: #181a1b;
+    box-shadow: none;
+}
+
+[data-bs-theme="dark"] .navbar {
+    background: #181a1b;
+    box-shadow: none;
+}
+
+[data-bs-theme="dark"] .sidebar a {
+    color: var(--bs-light-text-emphasis);
+}
+
+[data-bs-theme="light"] .sidebar {
+    background-color: var(--bs-gray-100);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+[data-bs-theme="dark"] .sidebar {
+    background-color: var(--bs-secondary-bg);
+}
+
+[data-bs-theme="dark"] .sidebar a {
+    color: var(--bs-light-text-emphasis);
+}
+
+[data-bs-theme="light"] .sidebar a {
+    color: var(--bs-dark-text-emphasis);
+}
+
+[data-bs-theme="dark"] .footer {
     background-color: #181a1b;
 }
 
-.navbar-darker {
-    background-color: #181a1b !important;
+[data-bs-theme="light"] .footer {
+    background-color: var(--bs-gray-100);
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.08);
+}
+
+[data-bs-theme="dark"] .navbar {
+    background-color: #181a1b;
+}
+
+[data-bs-theme="light"] .navbar {
+    background-color: var(--bs-gray-100);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .case-study {
-    background-color: var(--bs-secondary-bg); /* Вторичный цвет фона */
-    border-left: 5px solid var(--bs-primary); /* Основной цвет для левой границы */
+    background-color: var(--bs-secondary-bg);
+    border-left: 5px solid var(--bs-primary);
     margin-bottom: 20px;
     padding: 15px;
     transition: background-color 0.3s ease;
 }
 
 .case-study:hover {
-    background-color: var(--bs-tertiary-bg); /* Третичный цвет фона при наведении */
+    background-color: var(--bs-tertiary-bg);
 }
-

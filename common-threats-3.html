@@ -1,19 +1,28 @@
 <!DOCTYPE html>
-<html lang="ru" data-bs-theme="dark">
+<html lang="ru">
 
 <head>
+    <script src="js/theme-switcher-toggling-on-start-patch.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+
     <title>Угрозы</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/theme-switcher.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="js/change-theme.js"></script>
 </head>
 
 <body>
-    
-    <nav class="navbar navbar-expand-lg navbar-darker sticky-top">
+    <nav class="navbar navbar-expand-lg navbar sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 Web Security
@@ -42,27 +51,36 @@
                     <li class="nav-item">
                         <a class="nav-link" href="authentication.html">Аутентификация</a>
                     </li>
+                    <li class="nav-item">
+                        <div class="theme-toggle">
+                            <input type="checkbox" id="themeToggle" class="theme-toggle-input" />
+                            <label for="themeToggle" class="theme-toggle-label">
+                                <span class="theme-toggle-ball"></span>
+                                <i class="bi bi-moon-fill icon-moon"></i>
+                                <i class="bi bi-sun-fill icon-sun"></i>
+                            </label>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-    
+
     <div class="container mt-4">
         <div class="row">
-            
             <div class="col-lg-3 col-md-4 mb-4">
-                <aside class="sidebar p-3 bg-body-secondary rounded">
-                    <h5 class="text-light">Навигация</h5>
+                <aside class="sidebar p-3 rounded">
+                    <h5>Навигация</h5>
                     <hr>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="#modernTrends">Современные тренды</a>
+                            <a class="nav-link" href="#modernTrends">Современные тренды</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="#cases">Реальные случаи</a>
+                            <a class="nav-link" href="#cases">Реальные случаи</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="#further">Что дальше</a>
+                            <a class="nav-link" href="#further">Что дальше</a>
                         </li>
                     </ul>
                 </aside>
@@ -70,7 +88,7 @@
 
             <div class="col-lg-9 col-md-8">
                 <main>
-                    
+
                     <section id="modernTrends">
                         <h1>Современные тренды атак</h1>
                         <p>
@@ -134,10 +152,10 @@
                 </main>
 
                 <nav aria-label="Page navigation example" class="mt-5">
-                    <ul class="pagination justify-content-center pagination-dark">
-                        <li class="page-item">
-                            <a class="page-link" href="common-threats-2.html" tabindex="-1"
-                                aria-disabled="false">Предыдущая</a>
+                    <ul class="pagination justify-content-center>
+                        <li class=" page-item">
+                        <a class="page-link" href="common-threats-2.html" tabindex="-1"
+                            aria-disabled="false">Предыдущая</a>
                         </li>
                         <li class="page-item">
                             <a class="page-link" href="common-threats.html">1</a>
@@ -148,26 +166,26 @@
                         <li class="page-item active" aria-current="page">
                             <a class="page-link" href="common-threats-3.html">3</a>
                         </li>
-                        
+
                         <li class="page-item disabled">
                             <a class="page-link" href="#" aria-disabled="true">Следующая</a>
                         </li>
                     </ul>
                 </nav>
-            </div> 
-        </div> 
-    </div> 
-    
+            </div>
+        </div>
+    </div>
+
     <footer class="footer-darker text-white text-center p-5 mt-5">
         <div class="container">
             <p class="mb-0">© Мирошник Даниил</p>
         </div>
     </footer>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-    
+
     <script src="js/script.js"></script>
 </body>
 
